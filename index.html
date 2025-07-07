@@ -14,20 +14,1801 @@
   <title>PUR3 Vercel</title>
 </head>
 <body>
-  <h1><i class="fas fa-bolt"></i> PWA Offline dengan Swiper</h1>
-
-  <!-- Swiper -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-    </div>
-    <!-- Navigasi -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
+   <div class="loader-overlay" id="loader-overlay" >
+  <div class="loader-box">
+  
+    
+   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmcpoJ8DOvaARXgktt0UHnzO4JpiRgF71UbPyuxzIcFcCgkiUQbWDfLdvcoEnQ8ftNPMF2K6nIcUXk3p7qRouAAI7wMQ7ls4cUgUkiq_z6i6xe-mhqMc0LhGBrPfXLIW5n1GqI9OHRPJ6vmix-SzWmLhTnLDexTEa3JhoRmktE0dpT3LstdMsGCPCejZn/s200/PipKSqoTk55M6sKtik.webp" />
+    
+    <span>Memuat</span>
   </div>
+</div>      
+  
+  
+ <div  id="login-section"  ><div class="loginwrap" >
+<div  class="card-login">
+  <h2>Login</h2>
+  <div class="form-group">
+    <input type="text" id="login-username" placeholder="Username" autocomplete="off"/>
+  </div>
+  <div class="form-group">
+    <input type="text" id="login-password" placeholder="Password" autocomplete="new-password"/>
+    <span class="toggle-password" onclick="togglePassword()" >👁</span>
+ </div>
+  <label class="remember">
+    <input type="checkbox" id="remember-me" /> <span>Ingat Kata Sandi</span>
+  </label>
+ <center><button class="btn" onclick="login()">Login</button></center>
+</div>
+</div>
+</div>
+  <!-- Halaman Utama -->
+  <div id="main-section" class="hidden">
+    
+  
+  
+  
+  
+  
+  
+
+ 
+
+  <div class="top-bar" id="header" >
+    
+  <h2 id="header-title">Judul Awal</h2>
+    <div id="kembali" onclick="kembali()" class="back-arrow">
+      
+     <!-- CHEVRON LEFT - VB:[0 0 0 0]-->
+          <i style="position :relative;margin-right:15px;"><svg style="position:absolute;margin-top:4px;" width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="gray" stroke-width="2" class="chevron" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 1.0606601717798212 L4.060660171779821 8 L11 14.939339828220179"></path>
+          </svg></i>    
+    <!-- <i class="fas fa-chevron-left"></i>--></div>
+   <input style="padding: 10px; margin-bottom: 10px;display: none;" type="search" class="search-bar" id="search" placeholder="Silahkan masukan informasi" />  
+   <input style="border-radius:25px;border: 2px silver solid;padding:10px;width:80%;margin:10px" class="search-rtrw" type="search" id="pencarian" placeholder="Cari RT RW (contoh: 0503)" oninput="cari()">
+    
+    
+    <div id="info" class="info-icon"><i class="fas fa-info-circle"></i></div>
+  </div>
+
+ <div class="tabs-wrapper">
+  <div class="tabs">
+    <div class="tab" onclick="setTab(0)">Simpan Data</div>
+    <div class="tab active" onclick="setTab(1)">Alamat Tersimpan<span id="result-count"></span></div>
+    <div class="tab" onclick="setTab(2)">Cari RT RW</div>
+    <div class="tab" onclick="setTab(3)" > <b><i style="text-shadow: -.26px -.26px 0 #000,
+
+            .26px -.26px 0 #000,
+
+           -.26px .26px 0 #000,
+
+            .26px .26px 0 #000;font-weight:bold" class="fas fa-bars"></i></b></div>
+
+    
+   
+  </div>
+</div>
+
+
+
+  
+  <div class="swiper">
+    
+    
+   
+   
+    
+       <div class="swiper-wrapper" >
+    
+    
+     
+      
+      <div class="swiper-slide" >
+      <center style="background:#f9f9f9;margin-top:2rem"> Untuk tambah data klik tombol di bawah ini:<br><br> <button class="btn" onclick="showAddModal()">Tambah Data</button></center>
+        </div>
+      
+      
+      
+      <div  class="swiper-slide"   style ="position:relative;margin-top:56px;">
+ 
+
+  <div class="refresh">
+    
+    
+    
+  
+    
+  <span>  
+
+<select style="text-align:center;font-size:14px;background:transparent;padding:0;margin:0;left:0;width:auto;" id="render-limit" onchange="onRenderLimitChange()">
+  <option value="7" selected>Filter</option>
+   <option value="10">10</option>
+  <option value="25">25</option>
+  <option value="50">50</option>
+  <option value="100">100</option>
+  <option value="all">All</option>
+</select></span>
+    </div>
+        
+ 
+        
+   <div class="loader-overlay2" id="loader-data" >
+       <div class="loader-box" style="margin-top:-170px">
+   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmcpoJ8DOvaARXgktt0UHnzO4JpiRgF71UbPyuxzIcFcCgkiUQbWDfLdvcoEnQ8ftNPMF2K6nIcUXk3p7qRouAAI7wMQ7ls4cUgUkiq_z6i6xe-mhqMc0LhGBrPfXLIW5n1GqI9OHRPJ6vmix-SzWmLhTnLDexTEa3JhoRmktE0dpT3LstdMsGCPCejZn/s200/PipKSqoTk55M6sKtik.webp" />    
+    <span>Memuat</span>
+  </div>
+      </div>          
+          
+  
+ 
+        
+        
+       
+              
+        
+        
+  <div style="height: calc(100vh - 145px);" id="tab1">
+  <center><div id="refresh"></div>
+        </center>      
+   <div style="padding: 0 10px;position:relative;background:#f9f9f9;" id="card-container">
+ 
+     
+    
+<div style="height: calc(100vh - 145px); background:#f9f9f9 ;width: 100%; display: flex; align-items: center; justify-content: center; font-weight: 400; text-align: center; font-size: 17px;">
+
+  
+  <div style="margin-top:-20px;display: flex; flex-direction: column; align-items: center; max-width: 100%;background:#f9f9f9;">
+
+    <img style="max-width: 380px; width: 100%;left:0; margin-bottom: 8px;padding:0;margin:0" 
+         src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJviXZzHdH2T7PGZKaXnZrwYMbtaGz3fnwBdLIB9_whvH8ouLL26WC5zVhOZyoRFmITaho8fEJiKCfAAl3K5p6HZpzJ79Iw6JIJXnk5ASD7bc5z3CL_t90irEmvzT_9IS36F_cpvtpv-H3rYC7zNWzRsLbp-zKIOftzg3_ZyQT-4z6BaBqu2EPDWWDkRt_/s720/1000148136.jpg" 
+         alt="Tidak ada data">
+
+    <div style="background:#f9f9f9;">Tidak ada data</div>
+    
+  </div>   
+</div>
+        
+        
+   
+ 
+     
+  </div> 
+
+    
+  <button class="btn" id="load-more-btn" style="display:none; margin: 22px auto 25px auto; " onclick="loadMore()">Lihat selengkapnya</button>  
+
+  
+    
+    
+ </div>   
+ 
+   
+     
+      </div>
+     <div class="swiper-slide" >
+
+
+  <div class="tabel-container" id="table_kjb">
+  <div class="tabel" >  
+  
+      <h2>Nangkasawit</h2>
+      <table border="1" id="tabel1">
+        <tr>
+         
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th> 
+           <th>@</th>
+        </tr>
+       <tr>
+        <th colspan="3">Nangkasawit</th>
+        </tr>
+       <tr>
+         
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>          <td class="alamat" rowspan="8">Triyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        
+        
+        
+      </table>
+    </div>
+    
+    <div class="tabel">
+      <h2>Kedarpan</h2>
+      <table id="tabel7">
+        <tr>         
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>         <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Kedarpan</th>
+        </tr>
+        <tr>          
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="11">Teguh</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">05</td>       
+        </tr>       
+      </table>
+    </div>
+ <div class="tabel">
+      <h2>Gumiwang</h2>
+      <table id="tabel11">
+        <tr>         
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>          <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Gumiwang</th>
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="19">Triyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>       
+        </tr>
+       <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">06</td>       
+        </tr>       
+      </table>
+    </div>  
+    <div class="tabel">
+      <h2>Nangkod</h2>
+      <table id="tabel8">
+        <tr>        
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>         <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Nangkod</th>
+        </tr>
+        <tr>
+         <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="15">Teguh</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">06</td>       
+        </tr>
+       <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">07</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">07</td>       
+        </tr>
+      </table>
+    </div>
+    
+  <div class="tabel">
+      <h2>Sokanegara</h2>
+      <table id="tabel5">
+        <tr>        
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>         <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Sokanegara</th>
+        </tr>
+        <tr>         
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="15">Aziz</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">05</td>       
+        </tr>        
+      </table>
+    </div>  
+      
+    
+    <div class="tabel">
+      <h2>Krenceng</h2>
+      <table id="tabel2">
+        <tr>
+         
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>
+           <th>@</th>
+        </tr>
+       <tr>
+        <th colspan="3">Krenceng</th>
+        </tr>
+        <tr>
+          
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="6">Yoyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>         
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">01</td>        
+        </tr>
+        <tr>
+          
+          <td class="rtrw">07</td>
+          <td class="rtrw">03</td>
+          <td class="alamat" rowspan="6">Triyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+         
+          <td class="rtrw">13</td>
+          <td class="rtrw">05</td>
+       <td class="alamat" rowspan="5">Yoyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">14</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">16</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">17</td>
+          <td class="rtrw">06</td>        
+        </tr>
+      </table>
+    </div>
+    <div class="tabel">
+      <h2>Kejobong</h2>
+      <table id="tabel10">
+        <tr>        
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>          <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Kejobong</th>
+        </tr>
+        <tr>         
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="15">Arif</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>       
+        </tr>
+          <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+      <td class="rtrw">10</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">13</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">14</td>
+          <td class="rtrw">07</td>       
+        </tr>
+          <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">07</td>       
+        </tr>
+            <tr>
+        <th colspan="2">Pagerjirak</th>
+       <td class="alamat" rowspan="5">Arif</td>
+        </tr>
+        <tr>
+          <td class="rtrw">16</td>
+          <td class="rtrw">08</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">17</td>
+          <td class="rtrw">08</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">18</td>
+          <td class="rtrw">09</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">19</td>
+          <td class="rtrw">09</td>       
+        </tr>        
+      </table>
+    </div> 
+   <div class="tabel">
+      <h2>Lamuk</h2>
+      <table id="tabel6">
+        <tr>        
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>          <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Lamuk</th>
+        </tr>
+        <tr>        
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="20">Yoyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>      
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">04</td>      
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>      
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">05</td>      
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">06</td>      
+        </tr>
+        <tr>
+          <td class="rtrw">13</td>
+          <td class="rtrw">07</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">14</td>
+          <td class="rtrw">07</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">08</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">16</td>
+          <td class="rtrw">08</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">17</td>
+          <td class="rtrw">09</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">18</td>
+          <td class="rtrw">09</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">19</td>
+          <td class="rtrw">10</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">20</td>
+          <td class="rtrw">10</td>       
+        </tr>
+      </table>
+    </div>  
+  
+ <div class="tabel">
+      <h2>Pandansari</h2>
+       <table id="tabel4">
+        <tr>          
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>
+          <th>@</th>
+        </tr>
+       <tr>         
+        <th colspan="3">Pandansari</th>   
+         </tr>
+        <tr>         
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>          <td class="alamat" rowspan="10">Yoyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">02</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>       
+        </tr>
+          <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">03</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">04</td>       
+        </tr>
+        <tr>         
+          <td class="rtrw">11</td>
+          <td class="rtrw">04</td>         <td class="alamat" rowspan="5">Triyo</td>
+        </tr>
+          <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">13</td>
+          <td class="rtrw">05</td>       
+        </tr>
+        <tr>  
+   <td class="rtrw">14</td>
+          <td class="rtrw">06</td>       
+        </tr>
+         <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">06</td>       
+        </tr>
+        <tr>      
+          <td class="rtrw">17</td>
+          <td class="rtrw">07</td>       
+     <td class="alamat" rowspan="3">Yoyo</td>     
+        </tr>
+        <tr>
+          <td class="rtrw">18</td>
+          <td class="rtrw">08</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">19</td>
+          <td class="rtrw">08</td>       
+        </tr>
+         <tr>
+        <th colspan="2">Totogan</th>
+           <td class="alamat" rowspan="3">Yoyo</td>
+        </tr>
+        <tr>         
+          <td class="rtrw">20</td>
+          <td class="rtrw">10</td>       
+        </tr>
+          <tr>
+          <td class="rtrw">21</td>
+          <td class="rtrw">10</td>       
+        </tr>
+         <tr>      
+          <th colspan="2">Kalimunding</th>
+        <td class="alamat" rowspan="3">Triyo</td>
+         </tr>
+        <tr>         
+          <td class="rtrw">22</td>
+          <td class="rtrw">11</td>       
+        </tr>
+        <tr>
+          <td class="rtrw">23</td>
+          <td class="rtrw">11</td>       
+        </tr>    
+      </table>
+    </div>
+
+    
+    
+    <div class="tabel">
+      <h2>Pangempon</h2>
+      <table id="tabel3">
+        <tr>
+          
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>
+          <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Pangempon</th>
+        </tr>
+        <tr>
+          
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="24">Arif</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>         
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>        
+        </tr>
+          <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">04</td>         
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">06</td>        
+        </tr>
+          <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">06</td>         
+        </tr>
+        <tr>
+          <td class="rtrw">13</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">14</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">08</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">16</td>
+          <td class="rtrw">08</td>        
+        </tr>
+          <tr>
+          <td class="rtrw">17</td>
+          <td class="rtrw">09</td>         
+        </tr>
+        <tr>
+          <td class="rtrw">18</td>
+          <td class="rtrw">09</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">19</td>
+          <td class="rtrw">10</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">20</td>
+          <td class="rtrw">10</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">21</td>
+          <td class="rtrw">11</td>        
+        </tr>
+          <tr>
+          <td class="rtrw">22</td>
+          <td class="rtrw">11</td>         
+        </tr>
+        <tr>
+          <td class="rtrw">23</td>
+          <td class="rtrw">12</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">24</td>
+          <td class="rtrw">12</td>        
+        </tr>
+      </table>
+    </div>
+    
+    
+    
+          
+    
+ 
+    
+    
+  <div class="tabel">
+      <h2>Timbang</h2>
+      <table id="tabel9">
+        <tr>
+          
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>         <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Timbang</th>
+        </tr>
+        <tr>
+        
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>           <td class="alamat" rowspan="26">Heri Prasetyo</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">01</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">13</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">14</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">16</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">17</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">18</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">19</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">20</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">21</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">22</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">23</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">24</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">25</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">26</td>
+          <td class="rtrw">07</td>        
+        </tr>
+      </table>
+    </div>
+    
+    
+    
+ 
+        
+
+   
+    
+   <div class="tabel">
+      <h2>Bandingan</h2>
+      <table id="tabel12">
+        <tr>
+          
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>         <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Bandingan</th>
+        </tr>
+         <tr>
+          
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>         <td class="alamat" rowspan="30">Retno</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">03</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">04</td>
+          <td class="rtrw">02</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">05</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">06</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">07</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">08</td>
+          <td class="rtrw">04</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">09</td>
+          <td class="rtrw" style="color:red">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">10</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">11</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">12</td>
+          <td class="rtrw">05</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">13</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">14</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">15</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">16</td>
+          <td class="rtrw">07</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">17</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">18</td>
+          <td class="rtrw">08</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">19</td>
+          <td class="rtrw">08</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">20</td>
+          <td class="rtrw">09</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">21</td>
+          <td class="rtrw">09</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">22</td>
+          <td class="rtrw">10</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">23</td>
+          <td class="rtrw">10</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">24</td>
+          <td class="rtrw">11</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">25</td>
+          <td class="rtrw">11</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">26</td>
+          <td class="rtrw">12</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">27</td>
+          <td class="rtrw">12</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">28</td>
+          <td class="rtrw">13</td>        
+        </tr>
+       <tr>
+          <td class="rtrw">29</td>
+          <td class="rtrw">13</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">30</td>
+          <td class="rtrw">13</td>        
+        </tr>
+    </table>
+    </div> 
+   <div class="tabel">
+      <h2>Langgar</h2>
+      <table id="tabel3">
+        <tr>
+          
+          <th class="rtrw">RT</th>
+          <th class="rtrw">RW</th>         <th>@</th>
+        </tr>
+        <tr>
+        <th colspan="3">Langgar</th>
+      
+     
+        </tr>
+        
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">01</td>        <td class="alamat" rowspan="30">Aris Pambudi</td>
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">01</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">02</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">03</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">04</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">05</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">06</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">07</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">08</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">08</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">09</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">09</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">10</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">10</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">11</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">11</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">12</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">12</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">13</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">13</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">14</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">14</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">01</td>
+          <td class="rtrw">15</td>        
+        </tr>
+        <tr>
+          <td class="rtrw">02</td>
+          <td class="rtrw">15</td>        
+        </tr>
+    </table>
+    </div> 
+  </div>
+ <script>
+function cari() {
+  var input = document.getElementById("pencarian").value;
+  var tabel = document.querySelectorAll("table");
+  
+  tabel.forEach(function(t) {
+    var rows = t.rows;
+    
+    for (var i = 2; i < rows.length; i++) {
+      var rt = rows[i].cells[0].textContent.replace("RT", "");
+      var rw = rows[i].cells[1].textContent.replace("RW", "");
+      var kode = rt + rw;
+      
+      if (kode.includes(input)) {
+        rows[i].style.display = "";
+       /* rows[i].style.background = "green";
+        rows[i].style.color = "white";
+      */} else {
+        rows[i].style.display = "none";
+        
+      }
+    }
+  });
+}
+ </script>
+       
+         
+        </div> 
+      
+    
+   <div class="swiper-slide" style="background:silver;" >
+<div style="width:100%;height:100%;position:relative; padding:12px"> 
+      
+
+  
+  <div class="card" style=" padding:15px;border-radius:25px">    
+     
+ <p><b>🚒 Informasi Akun</b><div class="divider" style="margin:12px 0;"></div>
+    
+<p>  &nbsp; Username: <span id="username"></span>
+ <br> &nbsp; Password: <span>-</span> </p>   
+   </div>
+  
+  
+  
+   <div class="card" style=" padding:15px;border-radius:25px">  <p style="text-align:center;";>JADWAL PIKET</p> 
+  <img style="margin-top:5px;padding:5px;width:100%;" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB65FUvqzMkQZMbl3q02ROTli8MB2-Yr9JfDNx9xxF6DV_IKWL03xDo9MzTh7DH7P1Zy8Xo94qLNPbQcaytMuROfMGKAohpfa19yAgz0DcHIo4eW9wtRO6vxPkOy4xVZU3Jc7pQ47WfB2RKGWRhxvpWChfJ_h-Egdh8m537LU3sH1nIAShGRK12xiOkyji/s563/1000216197.jpg">
+  
+    </div>     
+     
+     
+ 
+  
+  
+  <div class="card" style=" padding:15px;border-radius:25px">  
+    <p style="color:gray;">ℹ️ Tentang Aplikasi</p>
+  <div class="divider"style="margin:12px 0;"></div>   
+ <p style="color:gray;">🔰 Versi 1.4.0</p>
+    
+   </div>   
+     
+
+    <div onclick="logout()" class="card" style=" text-align:center;padding:15px;border-radius:25px">    
+     
+ Keluar
+   </div>    
+     
+      </div> 
+        
+      
+      
+      
+      
+    </div>  
+    
+    </div>
+  </div>
+ 
+
+ 
+  <div class="modal" style="animation: fadeIn 0.1s ease-in-out;" id="modal-add">
+
+    
+  
+    <div class="fixed-header2"  >
+    <i onclick="closeModalmanual('modal-add')" class="fas fa-chevron-left"></i>
+    <div class="title2">Tambah Data</div>
+    <i class="fas fa-info-circle info-icon2"></i>
+  </div>
+<div style="position:relative;overflow:auto;background:#f9f9f9;width:100%;height:100%;">
+ 
+  <div class="card2"  onsubmit="validateForm(event)" >
+ 
+   
+    <div class="card2-header">
+      <h3>Alamat yang di paket</h3>
+   <br> </div>
+    <div class="card2-body">
+         
+      
+      <input placeholder="Nama Penerima" class="input2 form-required" id="add-nama" onchange="checkNama()"/></div>
+    
+   
+    <div class="card2-body" id="noTelpInput" style="display: none;">
+      <input type="number" placeholder="No.Telp" id="add-telepon"  class="input2" />
+    </div>
+    
+    <div class="card2-body">   <textarea placeholder="Alamat yang di paket" rows="4" class="textarea2 form-required" id="add-alamat" ></textarea>
+    
+     <span id="nama-status" class="nama-status"></span>
+</div>
+
+
+    <div class="divider2"></div>
+
+    <div class="card2-header">
+      <h3>Alamat lengkap desa mana?</h3>
+   <br> </div>
+
+    
+    <div class="card2-body" id="desaSelectInput" style="display: none;">
+    
+ 
+ <select id="add-desa" class="input2">
+  <option value="" disabled selected>Pilih Desa</option>
+</select>
+
+      
+      
+      
+   </div>
+
+   
+    <div class="card2-body" >
+      <textarea placeholder="Alamat Desa RT dan RW" rows="4" class="textarea2 form-required" id="add-alamataseli" ></textarea>
+    </div>
+    
+   
+<div class="divider2"></div>
+
+<div id="formMessage"></div>
+
+    
+   
+    <div class="switch-wrapper">
+      <label class="switch-label">Langsung Verifikasi Desa
+        <label class="switch">
+          <input type="checkbox"  onclick="toggleInputGroup()">
+          <span class="slider2"></span>
+        </label>
+      </label>
+    </div>
+    
+    
+
+      
+       <div class="button-wrapper">
+         
+         
+      <div class="button-inner">
+        
+     
+ 
+           
+    
+        <input type="button" value="Simpan" onclick="validateAndSave(event)" class="btn" />
+      </div>
+    </div>
+  
+  
+  </div>
+ </div>
+
+  </div>
+
+  
+
+ 
+  <div class="modal" style="animation: fadeIn 0.2s ease-in-out;" id="modal-detail">
+<div class="fixed-header2"  >
+    <i onclick="closeModalmanual('modal-detail')"  class="fas fa-chevron-left"></i>
+    <div class="title2" style="text-align:left">Detail Data</div>
+   <i class="fas fa-info-circle info-icon2"></i>
+  </div>
+     
+       <div class="container" style="background:#fff;width:100%;height:100%;" >  
+    
+     
+      
+      <div style="padding: 12px;margin-top:40px;background:#f3f3f3;">
+      
+      <div class="card" >
+        <div style="padding:1px 0;text-align:center"  >
+          
+          <h2 id="detail-tanggal" class="text-light ml-2" >2024-06-02 | 07:06:55</h2>
+       </div>
+      </div>
+
+      <div class="card row align-start">
+        <div class="icobn">🛑</div>
+        <div style="position:relative;width:100%;"  class="content ml-4">
+          <div class="row space-between">
+            <span class="text-bold large-text" id="detail-nama">Selly faizah</span>
+            <span class="small-text pointer" onclick="call()">📞</span>
+          </div>
+          <div id="detail-telepon" class="sensor text-light mt-1">**********7014</div>
+          <div style="margin-bottom:3px;" class="text-light mt-1" id="detail-alamat">Ds. Krenceng rt 05/02</div>
+        </div>
+      </div>
+
+      <div class="card">
+   
+        <div class="text-danger " style="border-radius:6px;text-align:center;background:#E7F9EB;color:#0EBF30;padding:5px 7px 35px 7px;" ><span style="font-size:12px;background:#E7F9EB;color :gray;" >Alamat Lengkap:</span>
+        <br><br>  <span style="font-size:17px;font-weight:bold;background:#E7F9EB;" id="detail-alamataseli">Pangempon RT02 RW05</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="row py-2 text-bold">
+          Provinsi: <span class="float-right text-dark text-normal">JAWA TENGAH</span>
+        </p>
+        <hr>
+        <p class="row py-2 text-bold">
+          Kabupaten: <span class="float-right text-dark text-normal" id="salahTLC">PURBALINGGA</span>
+        </p>
+        <hr>
+        <p class="row py-2 text-bold">
+          Kecamatan: <span class="float-right text-dark text-normal" id="detail-kecamatan">KEJOBONG</span>
+        </p>
+        <hr>
+        <p class="row py-2 text-bold">
+          Desa: <span id="detail-desa" class="float-right text-dark text-normal">Pilih Desa</span>
+        </p>
+
+      </div>
+  
+</div>
+         
+       
+   <div style="background:#fff;margin:0;padding:0; left:0;" class="flex-center mb-4">
+      <div class="button-group">
+        
+       
+        
+     <button id="btn-edit-detail" class="btn" >EDIT</button> 
+      </div>
+    </div>
+
+   </div>     
+     
+     
+  </div>
+
+
+
+  
+  
+  
+  
+  
+  <!-- Modal Edit -->
+  <div class="modal" style="animation: fadeIn 0.1s ease-in-out;" id="modal-edit">
+    <div class="fixed-header2"  >
+    <i onclick="closeModalmanual('modal-edit')" class="fas fa-chevron-left"></i>
+    <div class="title2">Update Data</div>
+    <i class="fas fa-info-circle info-icon2"></i>
+  </div>
+<div style="position:relative;overflow:auto;background:#f9f9f9;width:100%;height:100%;">
+ 
+  <div class="card2"  >
+      <input id="edit-id" type="hidden"/>
+   <div class="card2-body">
+
+ 
+  <select id="edit-tanggal">
+    
+    <option selected></option>
+  <option value="PWO-PUR03-07">PWO-PUR03-07</option>
+  <option value="PWO-PUR03-11" >PWO-PUR03-11</option>
+    <option value="PWO-PUR03-14" >PWO-PUR03-14</option>
+    <option value="PWO-PUR03-15" >PWO-PUR03-15</option>
+    <option value="PWO-PUR-LAIN" >PWO-PUR-LAIN</option>
+</select>   
+     
+     
+      </div>
+    <div class="divider2"></div>
+
+  
+     <div class="card2-header">
+      <h3>Alamat yang di paket</h3>
+   <br> </div>
+    <div class="card2-body">
+    
+        <input class="input2" id="edit-nama" placeholder="Nama"/>
+      </div>
+      
+      <div class="card2-body">
+       <input class="input2" id="edit-telepon" placeholder="Telepon"/>
+  </div>
+      
+     <div class="card2-body">
+       <textarea placeholder="Alamat yang di paket" rows="4" class="textarea2 "  id="edit-alamat" placeholder="Alamat"></textarea>
+       </div>
+    
+   <div class="divider2"></div>
+  
+      <div class="card2-header">
+      <h3>Alamat masuk desa mana?</h3>
+   <br> </div>
+    <div class="card2-body">
+     <select id="edit-desa" class="input2">
+  <option value="-" selected>Pilih Desa</option>
+</select>        
+      </div>
+       <div class="card2-body">
+     
+     <textarea placeholder="Alamat yang di paket" rows="4" class="textarea2"  id="edit-alamataseli" placeholder="Alamat Aseli"></textarea>
+   </div>
+    
+    
+<div class="divider2"></div>
+     
+ 
+ <div class="button-wrapper">
+   <div class="button-inner">           
+        <input type="button" value="Simpan" onclick="updateData()" class="btn" />
+      </div>
+    </div>    
+  </div>           
+    </div>  
+    
+
+  
+  </div>
+
+
+  
+   
+
+<!-- Modal Konfirmasi Penghapusan --> 
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <h3>Hapus Permanen</h3>
+  <br>  <p>Apakah Anda yakin ingin Hapus  Data ini permanen?</p><br>
+    <button id="yesConfirmBtn" class="btn">YA</button>
+  <br>  <button id="noConfirmBtn">TIDAK</button>
+  </div>
+</div>
+
+<!-- Modal Konfirmasi PIN -->
+<div id="passwordModal" class="modal-edit">
+  <div class="modal-content-edit">
+    <h3>Masukkan PIN untuk Hapus</h3>
+   <br>  <input class="input2" id="modalPasswordInput" style="text-align:center" placeholder="Masukkan PIN"/><br><br>
+  <center> <button class="btn" id="confirmDeleteBtn">HAPUS</button>
+ </center> <br> <button id="closePasswordModal">BATAL</button></div>
+</div>
+
+
+    
+<!-- Modal password edit -->
+
+    
+<div id="editPasswordModal"  class="modal-edit">
+  <div class="modal-content-edit">
+    <h3>Masukkan PIN untuk Edit</h3>
+   <br> <input class="input2" id="editModalPasswordInput" placeholder="Masukkan PIN" style="text-align:center"><br><br>
+   <center> <button id="confirmEditBtn" class="btn">OK</button>
+ <!--  <br> <button onclick="closeModal('editPasswordModal')" class="btn">Batal</button>--></center>
+  </div>
+</div>
+
+    
+ <!-- Modal Notifikasi -->
+<div id="notificationModal" class="modal" style="background:rgba(0,0,0,0.1)">
+  <div class="modal-content" style="background:rgba(0,0,0,0.9)">
+    <p id="notificationMessage" style="color:white"></p>
+    <button id="notificationOkBtn" style="display: none;">OK</button>
+  </div>
+</div>  
+    
+ 
+  <!-- Modal Konfirmasi -->
+<div id="modal-confirm5" class="modal5">
+  <div class="modal-content5">
+    <p id="modal-text5"></p>
+    <br>
+
+    <div class="button-wrapper">
+
+      <div class="button-inner">
+
+  
+    <button class="btn"  style="background:silver;border:none;padding:4px 25px"  onclick="confirmIsiAlamat(false)">Tidak</button>
+<button class="btn"  style="background:green;border:none;padding:4px 27px" onclick="confirmIsiAlamat(true)">Ya</button>
+      </div>
+
+    </div>
+    
+  </div>
+</div>
+
+</div>
 
   <script src="libs/swiper.min.js"></script>
   <script src="libs/all.min.js"></script>
