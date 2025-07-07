@@ -1171,37 +1171,7 @@ window.addEventListener('popstate', function() {
   document.addEventListener("DOMContentLoaded", loadData);
  
 
-const manifest = {
-  "name": "JMT Database Aplikasi Gelap",  
-   "short_name": "PUR3 Vercel",
-  //"display": "standalone",
- // "display": "browser",
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "icons": [
-    {
-      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPjXekcfBn01wJZTLNsej5Xrl44JaqF0HwPHmlHzVQYd6UkDRq_Xx3TDbaFc0NlabJY1_nLmVn96KVX6S84tcttf96fBCBv5XqgIk0b2dUG_VuQLVYFk3OsU4ykYxmubDH20NIfmBri15yk0dFRXVfAGg6kLNx4OQxXQzD9srwdCmV3RgfwLlx87ZvkiNc/s320/1000215347.jpg",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWZj7CknSZKjig2HKUnMHOUIcQBey6am1UfFfNItR2d-sg6J7YN6KyWrGGWWBJyi-6XBOO2BblOvc_UoBBq_Vinq1QpEh52XjFRI7l_KGRiw1W9TiJlUsSwO89GbPjXcwMhV9dLccSb3N8vvlWF5ofmgrmAtkSQqSYAq0vsm2HzsULnPGn-nX-EPTkkJk/s512/1000212070.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-};
-
-const stringManifest = JSON.stringify(manifest);
-const blob = new Blob([stringManifest], { type: 'application/json' });
-const manifestURL = URL.createObjectURL(blob);
-document.getElementById('manifest-placeholder').setAttribute('href', manifestURL);  
-   
-
-
  
-  
-  
 function showAlert(message, options = {}) {
   // Hapus alert lama jika ada
   const existing = document.querySelector(".custom-alert-box");
