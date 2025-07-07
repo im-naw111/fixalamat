@@ -1,10 +1,10 @@
 {
-  "name": "PUR3 Vercel",
+  "name": "PUR3 Vercel Database",
   "short_name": "PUR3",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#1a1a1a", 
-  "theme_color": "#1a1a1a",
+  "background_color": "#000000", 
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
