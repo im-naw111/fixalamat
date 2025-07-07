@@ -3,3 +3,18 @@ body {
   text-align: center;
   padding: 2rem;
 }
+
+.swiper {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 2rem auto;
+}
+
+.swiper-slide {
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
