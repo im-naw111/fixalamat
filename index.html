@@ -6,13 +6,29 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="libs/swiper.min.css" />
+  <link rel="stylesheet" href="libs/fontawesome.min.css" />
   <link rel="icon" href="icons/icon-192x192.png" />
-  <title>PWA Offline App</title>
+  <title>PWA dengan Swiper & Font Awesome</title>
 </head>
 <body>
-  <h1>Halo Dunia!</h1>
-  <p>Website ini bisa offline dan diinstall sebagai PWA.</p>
+  <h1><i class="fas fa-bolt"></i> PWA Offline dengan Swiper</h1>
 
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+    </div>
+    <!-- Navigasi -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <script src="libs/swiper.min.js"></script>
+  <script src="libs/all.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
