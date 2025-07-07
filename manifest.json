@@ -1,10 +1,10 @@
 {
-  "name": "PWA Offline App",
-  "short_name": "PWA App",
+  "name": "PUR3 Vercel",
+  "short_name": "PUR3",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#1a1a1a", 
+  "theme_color": "#1a1a1a",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
