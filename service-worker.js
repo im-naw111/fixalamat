@@ -8,8 +8,8 @@ const FILES_TO_CACHE = [
   '/icons/icon-192x192.png',
   '/libs/swiper.min.css',
   '/libs/swiper.min.js',
-  '/libs/fontawesome.min.css',
-  '/libs/all.min.js'
+  '/libs/fontawesome.min.css'
+ // '/libs/all.min.js'
 ];
 
 self.addEventListener('install', event => {
