@@ -28,10 +28,10 @@ if ('serviceWorker' in navigator) {
 
 
 const tabTitles = [
-  "JMT Database",
+  "FixAlamat",
   "Cari Data",
   "Cari RT RW",
-  "JMT Database"
+  "FixAlamat"
  
 ];
  
