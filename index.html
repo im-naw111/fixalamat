@@ -124,7 +124,7 @@ document.addEventListener('contextmenu', function (e) {
           </svg></i>    
     <!-- <i class="fas fa-chevron-left"></i>--></div>
    <input style="padding: 10px; margin-bottom: 10px;display: none;" type="search" class="search-bar" id="search" placeholder="Silahkan masukan informasi" />  
-   <input style="border-radius:25px;border: 2px silver solid;padding:10px;width:80%;margin:10px" class="search-rtrw" type="search" id="pencarian" placeholder="Cari RT RW (contoh: 0503)" oninput="carirtrw()">
+   <input style="border-radius:25px;border: 2px silver solid;padding:10px;width:80%;margin:10px" class="search-rtrw" type="search" id="pencarian" placeholder="Cari RT RW (contoh: 0503)" oninput="cari()">
     
     
     <div id="info" class="info-icon"><i class="fas fa-info-circle"></i></div>
@@ -1514,7 +1514,7 @@ th {
     </div> 
   </div>
  <script>
-function carirtrw() {
+function cari() {
   var input = document.getElementById("pencarian").value;
   var tabel = document.querySelectorAll("table");
   
