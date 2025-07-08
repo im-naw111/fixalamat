@@ -1,3 +1,4 @@
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/service-worker.js')
@@ -5,63 +6,6 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.log('Gagal mendaftar SW:', err));
   });
 }
-
- 
-  function validateAndSave(event) {
-    event.preventDefault();
-    const requiredFields = document.querySelectorAll(".form-required");
-    const msgBox = document.getElementById("formMessage");
-
-    let isValid = true;
-    requiredFields.forEach(field => {
-      if (field.value.trim() === "") {
-        isValid = false;
-      }
-    });
-
-    if (!isValid) {
-      msgBox.innerText = "Data belum lengkap";
-      msgBox.className = "message error";
-      play();
-    } else {
-      msgBox.innerText = "Menyimpan...";
-      msgBox.className = "message success";
-
-      // Panggil fungsi simpan
-      saveData();
-    }
-
-    setTimeout(() => {
-      msgBox.innerText = "";
-      msgBox.className = "";
-    }, 3000);
-  }
-
-  
-
-document.addEventListener('contextmenu', function (e) {
-  if (e.target.tagName === 'IMG') {
-    e.preventDefault();
-  }
-});
-  
-
- function toggleInputGroup() {
-      const telp = document.getElementById("noTelpInput");
-      const desainput = document.getElementById("desaSelectInput");
-      const display = telp.style.display === "none" || telp.style.display === "" ? "block" : "none";
-      telp.style.display = display;
-      desainput.style.display = display;
-    }
-
-   
-document.getElementById("editPasswordModal").addEventListener("click", function (e) {
-  if (e.target === this) {
-    this.style.display = "none";
-    document.getElementById("editModalPasswordInput").value = ""; // reset input PIN
-  }
-});
-
 
     
    const API_URL = "https://script.google.com/macros/s/AKfycbwpnBuJ2kB0tzlFO3diO7noeXfckpbLNdVFID4-IsVF_DifE34evnbJtyysC_u5JWEw/exec";
@@ -84,10 +28,10 @@ document.getElementById("editPasswordModal").addEventListener("click", function 
 
 
 const tabTitles = [
-  "FixAlamat",
+  "JMT Database",
   "Cari Data",
   "Cari RT RW",
-  "FixAlamat"
+  "JMT Database"
  
 ];
  
@@ -416,6 +360,8 @@ function saveData() {
   showLoader();
   
  /* fetch(`${API_URL}?action=create&sheetname=${sheet}&nama=${nama}&alamat=${alamat}&telepon=${telepon}&alamataseli=${alamataseli}&desa=${desa}`)*/
+  
+  
 fetch(API_URL + "?action=create" + "&sheetname=" + sheet + "&nama=" + nama + "&alamat=" + alamat + "&telepon=" + telepon + "&alamataseli=" + alamataseli + "&desa=" + desa)  
   .then(res => res.json())
     .then(response => {
@@ -472,7 +418,8 @@ statusText.className = "nama-status";
       
       play();
         alamatSementara = found[2]; // Simpan alamat untuk nanti
-    
+      /*  document.getElementById("modal-text5").innerHTML =
+            `<br><h3> Nama sudah tersimpan!</h3><br>Alamat: <b>${alamatSementara}</b><br><br>Lanjut isi dengan alamat ini?`;*/
      document.getElementById("modal-text5").innerHTML =
   "<br><h3> Nama sudah tersimpan!</h3><br>Alamat: <b>" + alamatSementara + "</b><br><br>Lanjut isi dengan alamat ini?";
         document.getElementById("modal-confirm5").style.display = "flex";
@@ -526,7 +473,13 @@ const data = Array.isArray(response.data) ? response.data : [];
     
   allData = data; //  WAJIB: Update allData agar sinkron dengan data terbaru  
 if (data.length === 0) {
-
+ /*   cardContainer.innerHTML = `
+      <div style="text-align:center; padding:60px 20px; color:#666;">
+        <div style="font-size:68px;">O</div><br>
+        <h4>Data masih Kosong</h4><br><br><br><br>
+        <center><button class ="btn" onclick="kembali()">tambah data</button>
+      </center></div>
+    `;*/
  cardContainer.innerHTML = 
   '<div style="text-align:center; padding:60px 20px; color:#666;">' +
     '<div style="font-size:68px;">O</div><br>' +
@@ -568,7 +521,22 @@ function LoadingRefresh() {
   
   hideLoader();
   
- 
+ // resultCount.innerText = "";
+ /* cardContainer.innerHTML =`
+   <div style="height: calc(100vh - 145px); background: #f9f9f9;width: 100%; display: flex; align-items: center; justify-content: center; font-weight: 400; text-align: center; font-size: 17px;">
+
+  
+  <div style="margin-top:-120px;display: flex; flex-direction: column; align-items: center; max-width: 100%;background:#f9f9f9;">
+
+    <img style="max-width: 380px; width: 100%;left:0; margin-bottom: 8px;padding:0;margin:0" 
+         src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJviXZzHdH2T7PGZKaXnZrwYMbtaGz3fnwBdLIB9_whvH8ouLL26WC5zVhOZyoRFmITaho8fEJiKCfAAl3K5p6HZpzJ79Iw6JIJXnk5ASD7bc5z3CL_t90irEmvzT_9IS36F_cpvtpv-H3rYC7zNWzRsLbp-zKIOftzg3_ZyQT-4z6BaBqu2EPDWWDkRt_/s720/1000148136.jpg" 
+         alt="Tidak ada data">
+
+    <div style="background:#f9f9f9;">Tidak ada data</div>
+    
+  </div>   
+</div>
+` ;*/
   cardContainer.innerHTML = 
     '<div style="height: calc(100vh - 145px); background: #f9f9f9;width: 100%; display: flex; align-items: center; justify-content: center; font-weight: 400; text-align: center; font-size: 17px;">' +
     
@@ -597,7 +565,13 @@ function LoadingRefresh() {
 }
 const data = Array.isArray(response.data) ? response.data : [];
 if (data.length === 0) {
-
+  /*  cardContainer.innerHTML = `
+      <div style="text-align:center; padding:60px 20px; color:#666;">
+        <div style="font-size:68px;">I</div><br>
+        <h4>Data masih Kosong</h4><br><br><br><br>
+        <center><button class ="btn" onclick="kembali()">tambah data</button>
+      </center></div>
+    `;*/
   cardContainer.innerHTML = 
     '<div style="text-align:center; padding:60px 20px; color:#666;">' +
         '<div style="font-size:68px;">O</div><br>' +
@@ -676,18 +650,67 @@ document.querySelector('.search-bar').disabled = false;
     const showDeleteButton = (desaHTML === '-' || desaHTML === '@Lainnya' );
     const showCallButton = telepon !== '0';
  const DesaLock = (desaHTML !== '-' && desaHTML !== '@Lainnya' );
-
+  /*  const pesanWA = encodeURIComponent(
+      `Halo 【${namaRaw}】, kami dari J&T Express ingin memastikan Alamat pengiriman paket COD anda. Mohon bantuannya untuk konfirmasi alamat lengkapnya,\n\nApakah benar alamatnya di Desa【${alamataseliHTML}】?\n\nTerima kasih`
+    );*/
+    
 const pesanWA = encodeURIComponent("Halo 【" + namaRaw + "】, kami dari J&T Express ingin memastikan Alamat pengiriman paket COD anda. Mohon bantuannya untuk konfirmasi alamat lengkapnya,\n\nApakah benar alamat lengkapnya di Desa【" + alamataseliHTML + "】?\n\nTerima kasih");
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML ="<div onclick=\"showDetailModal('" + id + "', '" + escapeQuotes(namaRaw) + "', '" + escapeQuotes(alamatRaw) + "', '" + telepon + "', '" + alamataseliHTML + "', '" + escapeQuotes(desaRaw) + "', '" + tanggalHTML + "')\">" + "<div class=\"card-header\">" + "<div class=\"circle\">1</div>" + "<span class=\"timestamp\">" + tanggalHTML + "</span>" + "</div>" + "<div class=\"divider\"></div>" + "<div class=\"info\">" + "<span class=\"label\">Penerima:</span>" + "<span class=\"value\" style=\"font-weight:500;white-space: pre-line;\">" + namaHTML + "</span>" + "</div>" + "<div class=\"grid-2\">" + "<span class=\"label\">No. Hp Penerima:</span>" + "<span class=\"label\">Alamat Terverifikasi:</span>" + "<span class=\"value\">" + maskedNumber1 + "</span>" + "<span class=\"value\">" + desaHTML + (DesaLock ? " <i class=\"fas fa-lock\"></i>" : "") + "</span>" + "</div>" + "<div class=\"info\">" + "<span class=\"label\">Alamat Penerima:</span>" + "<p class=\"value\" style=\"white-space: pre-line;font-weight:500;\"><span style=\"font-weight:400;color:gray\"><!--PURBALINGGA, " + userLogin + ", --></span>" + alamatHTML + "</p>" + "</div>" + "<div class=\"divider\"></div>" + "</div>" + "<div class=\"action-buttons\">" + (showDeleteButton ? "<i onclick=\"deleteData('" + id + "')\" class=\"fas fa-trash-alt text-red\"></i>" : "") + (showCallButton ? "<a href=\"tel:" + telepon + "\" onclick=\"event.stopPropagation()\"><i class=\"fas fa-phone text-red\"></i></a>" : "") + "<a href=\"https://wa.me/" + telepon.replace(/^0/, '62') + "?text=" + pesanWA + "\" target=\"_blank\" onclick=\"event.stopPropagation()\">" + "<i class=\"fab fa-whatsapp-square text-green\"></i>" + "</a>" + "</div>" + (isBaru ? "<div class=\"badge\">TERSIMPAN</div>" : "") + (isEdit ? "<div class=\"badge badge-edit\">SUDAH EDIT</div>" : "");
-
+  /*    card.innerHTML = `
+      <div onclick="showDetailModal('${id}', '${escapeQuotes(namaRaw)}', '${escapeQuotes(alamatRaw)}', '${telepon}', '${alamataseliHTML}', '${escapeQuotes(desaRaw)}', '${tanggalHTML}')">
+        <div class="card-header">
+          <div class="circle">1</div>
+          <span class="timestamp">${tanggalHTML}</span>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+          <span class="label">Penerima:</span>
+          <span class="value" style="font-weight:500;white-space: pre-line;">${namaHTML}</span>
+        </div>
+        <div class="grid-2">
+          <span class="label">No. Hp Penerima:</span>
+          <span class="label">Alamat Terverifikasi:</span>
+          <span class="value">${maskedNumber1}</span>
+          <span class="value">${desaHTML}</span>
+        </div>
+        <div class="info">
+          <span class="label">Alamat Penerima:</span>
+          <p class="value" style="white-space: pre-line;font-weight:500;"><span style="font-weight:400;color:gray"><!--PURBALINGGA, ${userLogin}, --></span>${alamatHTML} </p>
+        </div>
+        <div class="divider"></div>
+      </div>
+      <div class="action-buttons">
+        ${showDeleteButton ? `<i onclick="deleteData('${id}')" class="fas fa-trash-alt text-red"></i>` : ''}  
+       
+       
+       
+       
+         ${showCallButton ? `<a href="tel:${telepon}" onclick="event.stopPropagation()">
+          <i class="fas fa-phone text-red"></i>` : ''}
+          
+          
+          
+        </a>             
+        <a href="https://wa.me/${telepon.replace(/^0/, '62')}?text=${pesanWA}" target="_blank" onclick="event.stopPropagation()">
+          <i class="fab fa-whatsapp-square text-green"></i>
+        </a>
+      </div>
+      ${isBaru ? '<div class="badge">TERSIMPAN</div>' : ''}
+      ${isEdit ? '<div class="badge badge-edit">TERUPDATE</div>' : ''}
+    `;
+*/
     card.setAttribute("data-id", id);
     cardContainer.appendChild(card);
   });
 
    
+ /* setTimeout(() => {
+    cardContainer.classList.remove("fade-in");
+  }, 50);
 
+*/
   
     
 const loadMoreBtn = document.getElementById("load-more-btn");
@@ -733,7 +756,13 @@ function searchData() {
     '<h4>Data masih Kosong</h4><br><br><br><br>' +
     '<center><button class="btn" onclick="kembali()">tambah data</button></center>' +
   '</div>'; 
-
+   /*   cardContainer.innerHTML = `
+      <div style="text-align:center; padding:60px 20px; color:#666;">
+        <div style="font-size:68px;">O</div><br>
+        <h4>Data masih Kosong</h4><br><br><br><br>
+        <center><button class ="btn" onclick="kembali()">tambah data</button>
+      </center></div>
+    `;*/
     resultCount.innerText = "(0)";
     return;
   }  
@@ -771,7 +800,9 @@ function searchData() {
     })
     .filter(Boolean);
   if (filtered.length === 0) {
-  
+  /*  cardContainer.innerHTML = `
+      <div style="background:#f9f9f9;height: calc(100dvh - 150px);width: 100%; padding: 50px 0px; font-weight:400;text-align: center; font-size: 16px;"><br><br><br>Hasil tidak ditemukan</div>
+    `;*/
     cardContainer.innerHTML = 
   "<div style=\"background:#f9f9f9;height: calc(100dvh - 150px);width: 100%; padding: 50px 0px; font-weight:400;text-align: center; font-size: 16px;\"><br><br><br>Hasil tidak ditemukan</div>";
 
@@ -909,7 +940,9 @@ document.getElementById("detail-alamat").innerText = alamat;
    
    document.getElementById("detail-alamataseli").innerHTML =  showbadgeButton ? alamataseli + ' <span><svg width="17px" height="17px" viewBox="0 0 17 17" class="VerifiedIcon"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-767.000000, -573.000000)"><g transform="translate(-80.000000, -57.000000)"><g transform="translate(100.000000, 77.000000)"><g transform="translate(400.000000, 401.000000)"><g transform="translate(347.000000, 152.000000)"><path d="M1.74035847,11.2810213 C1.61434984,11.617947 1.54545455,11.982746 1.54545455, 12.3636364 C1.54545455,14.0706983 2.92930168,15.4545455 4.63636364,15.4545455 C5.01725401,15.4545455 5.38205302,15.3856502 5.71897873,15.2596415 C6.22025271,16.2899361 7.2772042,17 8.5,17 C9.7227958,17 10.7797473,16.2899361 11.2810213,15.2596415 L11.2810213,15.2596415 C11.617947,15.3856502 11.982746,15.4545455 12.3636364,15.4545455 C14.0706983,15.4545455 15.4545455,14.0706983 15.4545455,12.3636364 C15.4545455,11.982746 15.3856502,11.617947 15.2596415,11.2810213 C16.2899361,10.7797473 17,9.7227958 17,8.5 C17,7.2772042 16.2899361,6.22025271 15.2596415,5.71897873 C15.3856502,5.38205302 15.4545455,5.01725401 15.4545455,4.63636364 C15.4545455,2.92930168 14.0706983,1.54545455 12.3636364,1.54545455 C11.982746,1.54545455 11.617947,1.61434984 11.2810213,1.74035847 C10.7797473,0.71006389 9.7227958,0 8.5,0 C7.2772042,0 6.22025272,0.71006389 5.71897873,1.74035847 C5.38205302,1.61434984 5.01725401,1.54545455 4.63636364,1.54545455 C2.92930168,1.54545455 1.54545455,2.92930168 1.54545455,4.63636364 C1.54545455,5.01725401 1.61434984,5.38205302 1.74035847,5.71897873 C0.71006389,6.22025272 0,7.2772042 0,8.5 C0,9.7227958 0.71006389,10.7797473 1.74035847,11.2810213 L1.74035847,11.2810213 Z" class="verified-bg" opacity="1" fill="#44A7F6"></path><path d="M11.2963464,5.28945679 L6.24739023,10.2894568 L7.63289664,10.2685106 L5.68185283,8.44985845 C5.27786241,8.07328153 4.64508754,8.09550457 4.26851062,8.499495 C3.8919337,8.90348543 3.91415674,9.53626029 4.31814717,9.91283721 L6.26919097,11.7314894 C6.66180802,12.0974647 7.27332289,12.0882198 7.65469737,11.7105432 L12.7036536,6.71054321 C13.0960757,6.32192607 13.0991603,5.68876861 12.7105432,5.29634643 C12.3219261,4.90392425 11.6887686,4.90083965 11.2963464,5.28945679 L11.2963464,5.28945679 Z" class="verified-check" fill="#FFFFFF"></path></g></g></g></g></g></g></svg></span>' : alamataseli;
    
+   // document.getElementById("detail-alamataseli2").innerText = "" + alamataseli; 
 
+  // Tambahkan event listener langsung di sini
   const editBtn = document.getElementById("btn-edit-detail");
   if (editBtn) {
     editBtn.onclick = () => {
@@ -955,7 +988,7 @@ function updateData() {
 
   showLoader();
 fetch(API_URL + "?action=update" + "&sheetname=" + sheet + "&id=" + id + "&nama=" + nama + "&alamat=" + alamat + "&telepon=" + telepon + "&alamataseli=" + alamataseli + "&desa=" + desa + "&tanggal=" + tanggal)
-
+ /* fetch(`${API_URL}?action=update&sheetname=${sheet}&id=${id}&nama=${nama}&alamat=${alamat}&telepon=${telepon}&alamataseli=${alamataseli}&desa=${desa}&tanggal=${tanggal}`)*/
     .then(() => {
       closeModal("modal-edit");
       closeModal("modal-detail");
@@ -1170,8 +1203,57 @@ window.addEventListener('popstate', function() {
 
   document.addEventListener("DOMContentLoaded", loadData);
  
+/*const manifest = {
+  "name": "JMT Database Alamat",  
+   "short_name": "JMT Database",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDYufAx2jGcGR9RXrap-dL_3aoUlo6tPI2o9cvENvIjtYZyONEfAXAVLuRWxTj_IC2EgHN9gBJUSlsBVuICP0Ta4mMvqtAaeLtwNmk6eml1Rs5xVkGUU8PnopiOXvdT5Dm0g530keh0bA-UCdUTKZoZSxhQmJ0dcCMS_8f55y5wEGQ4LRzO1hdWfwKk2Y/s192/1000212069.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWZj7CknSZKjig2HKUnMHOUIcQBey6am1UfFfNItR2d-sg6J7YN6KyWrGGWWBJyi-6XBOO2BblOvc_UoBBq_Vinq1QpEh52XjFRI7l_KGRiw1W9TiJlUsSwO89GbPjXcwMhV9dLccSb3N8vvlWF5ofmgrmAtkSQqSYAq0vsm2HzsULnPGn-nX-EPTkkJk/s512/1000212070.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+};
+*/
+const manifest = {
+  "name": "JMT Database Aplikasi Gelap",  
+   "short_name": "PUR3 Vercel",
+  //"display": "standalone",
+ // "display": "browser",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPjXekcfBn01wJZTLNsej5Xrl44JaqF0HwPHmlHzVQYd6UkDRq_Xx3TDbaFc0NlabJY1_nLmVn96KVX6S84tcttf96fBCBv5XqgIk0b2dUG_VuQLVYFk3OsU4ykYxmubDH20NIfmBri15yk0dFRXVfAGg6kLNx4OQxXQzD9srwdCmV3RgfwLlx87ZvkiNc/s320/1000215347.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWZj7CknSZKjig2HKUnMHOUIcQBey6am1UfFfNItR2d-sg6J7YN6KyWrGGWWBJyi-6XBOO2BblOvc_UoBBq_Vinq1QpEh52XjFRI7l_KGRiw1W9TiJlUsSwO89GbPjXcwMhV9dLccSb3N8vvlWF5ofmgrmAtkSQqSYAq0vsm2HzsULnPGn-nX-EPTkkJk/s512/1000212070.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+};
+
+const stringManifest = JSON.stringify(manifest);
+const blob = new Blob([stringManifest], { type: 'application/json' });
+const manifestURL = URL.createObjectURL(blob);
+document.getElementById('manifest-placeholder').setAttribute('href', manifestURL);  
+   
+
 
  
+  
+  
 function showAlert(message, options = {}) {
   // Hapus alert lama jika ada
   const existing = document.querySelector(".custom-alert-box");
@@ -1198,6 +1280,25 @@ function showAlert(message, options = {}) {
       (options.okText || 'OK') +
     "</button>" +
   "</div>";
+/* alertBox.innerHTML = `
+    <div class="custom-alert-content" style="padding: 15px;">
+      <div class="custom-alert-message" style="margin-bottom: 12px; font-size: 16px;">
+        ${message}
+      </div>
+      <button class="custom-alert-ok-btn" style="
+        background-color: ${options.okColor || '#1877F2'};
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+      ">
+        ${options.okText || 'OK'}
+      </button>
+    </div>
+  `;*/
 
   // Styling utama
   Object.assign(alertBox.style, {
@@ -1235,3 +1336,4 @@ play();
   onClose: () => console.log("Alert selesai.")
 });
 */
+  
