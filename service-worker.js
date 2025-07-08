@@ -8,7 +8,16 @@ const FILES_TO_CACHE = [
   '/icons/icon-192x192.png',
   '/libs/swiper.min.css',
   '/libs/swiper.min.js',
-  '/libs/fontawesome.min.css'
+  '/libs/fontawesome.min.css',
+  '/webfonts/fa-brands-400.ttf',
+  '/webfonts/fa-brands-400.woff2',
+  '/webfonts/fa-regular-400.ttf',
+  '/webfonts/fa-regular-400.woff2',
+  '/webfonts/fa-solid-900.ttf',
+  '/webfonts/fa-solid-900.woff2',
+  '/webfonts/fa-v4compatibility.ttf',
+  '/webfonts/fa-v4compatibility.woff2'
+  
  // '/libs/all.min.js'
 ];
 
