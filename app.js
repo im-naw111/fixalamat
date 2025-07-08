@@ -84,10 +84,10 @@ document.getElementById("editPasswordModal").addEventListener("click", function 
 
 
 const tabTitles = [
-  "JMT Database",
+  "FixAlamat",
   "Cari Data",
   "Cari RT RW",
-  "JMT Database"
+  "FixAlamat"
  
 ];
  
