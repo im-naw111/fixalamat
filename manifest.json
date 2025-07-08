@@ -1,6 +1,6 @@
 {
-  "name": "PUR3 Vercel Database",
-  "short_name": "PUR3 Vercel",
+  "name": "FixAlamat Database",
+  "short_name": "FixAlamat",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#000000", 
