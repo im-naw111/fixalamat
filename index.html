@@ -7,14 +7,71 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" />
 <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="libs/swiper.min.css" />
   <link rel="stylesheet" href="libs/fontawesome.min.css" />
+    <link rel="stylesheet" href="style.css" />
+
   <link rel="icon" href="icons/icon-192x192.png" />
   <title>FixAlamat</title>
+
+ 
+  
+ 
+
+   <script>
+ 
+  function validateAndSave(event) {
+    event.preventDefault();
+    const requiredFields = document.querySelectorAll(".form-required");
+    const msgBox = document.getElementById("formMessage");
+
+    let isValid = true;
+    requiredFields.forEach(field => {
+      if (field.value.trim() === "") {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      msgBox.innerText = "Data belum lengkap";
+      msgBox.className = "message error";
+      play();
+    } else {
+      msgBox.innerText = "Menyimpan...";
+      msgBox.className = "message success";
+
+      // Panggil fungsi simpan
+      saveData();
+    }
+
+    setTimeout(() => {
+      msgBox.innerText = "";
+      msgBox.className = "";
+    }, 3000);
+  }
+
+  
+</script>
+
+    
+
+
+  
+
+ <script>
+document.addEventListener('contextmenu', function (e) {
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
+  
+  </script>     
 </head>
-<body>
-   <div class="loader-overlay" id="loader-overlay" >
+  
+  
+  
+<body> 
+  <div class="loader-overlay" id="loader-overlay" >
   <div class="loader-box">
   
     
@@ -65,7 +122,7 @@
           </svg></i>    
     <!-- <i class="fas fa-chevron-left"></i>--></div>
    <input style="padding: 10px; margin-bottom: 10px;display: none;" type="search" class="search-bar" id="search" placeholder="Silahkan masukan informasi" />  
-   <input style="border-radius:25px;border: 2px silver solid;padding:10px;width:80%;margin:10px" class="search-rtrw" type="search" id="pencarian" placeholder="Cari RT RW (contoh: 0503)" oninput="cari()">
+   <input style="border-radius:25px;border: 2px silver solid;padding:10px;width:80%;margin:10px" class="search-rtrw" type="search" id="pencarian" placeholder="Cari RT RW (contoh: 0503)" oninput="carirtrw()">
     
     
     <div id="info" class="info-icon"><i class="fas fa-info-circle"></i></div>
@@ -119,7 +176,7 @@
   
     
   <span>  
-
+  <!-- <label for="render-limit">Tampilkan:</label>-->
 <select style="text-align:center;font-size:14px;background:transparent;padding:0;margin:0;left:0;width:auto;" id="render-limit" onchange="onRenderLimitChange()">
   <option value="7" selected>Filter</option>
    <option value="10">10</option>
@@ -186,8 +243,57 @@
      
       </div>
      <div class="swiper-slide" >
+  <style>
+.tabel-container {padding-top:10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
+.tabel {background:silver;
+  margin: 2px;
+  margin-bottom:10px;
+  width: 20%;height:100%;
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
 
+.tabel h2 {padding-top:7px;
+  font-size: 10px;
+  margin-bottom: 8px;
+  text-align:center;
+  color:blue;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 8px;
+}
+
+th, td {
+  border: 1px solid gray;
+  padding: 1px;
+  text-align: center;
+  background:#f9f9f9;
+}
+.rtrw {
+  font-size: 12px;
+}
+.alamat {color:green;border: 2px solid gray;
+  writing-mode: vertical-rl;
+/* transform: rotate(180deg);*/
+ 
+}
+th {
+  background-color:orange;
+}</style>
+ 
+ <!-- 
+<center> <input style="text-align:center;border-radius:25px;padding:10px;width:80%;margin:10px" type="search" id="pencarian" placeholder="Cari RT RW (contoh: 0503)" oninput="cari()">
+  </center>
+  -->
   <div class="tabel-container" id="table_kjb">
   <div class="tabel" >  
   
@@ -1406,7 +1512,7 @@
     </div> 
   </div>
  <script>
-function cari() {
+function carirtrw() {
   var input = document.getElementById("pencarian").value;
   var tabel = document.querySelectorAll("table");
   
@@ -1466,7 +1572,8 @@ function cari() {
     
    </div>   
      
-
+  <!--   <button class="btn" style="background:gray" onclick="logout()">Logout</button>
+     -->
     <div onclick="logout()" class="card" style=" text-align:center;padding:15px;border-radius:25px">    
      
  Keluar
@@ -1638,7 +1745,11 @@ function cari() {
         <p class="row py-2 text-bold">
           Desa: <span id="detail-desa" class="float-right text-dark text-normal">Pilih Desa</span>
         </p>
-
+    <!--    <hr>
+        <p class="grid py-2">
+          <span class="text-bold">Alamat:</span>
+          <span class="text-dark float-right text-normal" id="detail-alamataseli2" style="font-weight:bold;color:#0EBF30;">Pangempon RT02 RW03 </span>
+        </p>-->
       </div>
   
 </div>
@@ -1678,7 +1789,8 @@ function cari() {
       <input id="edit-id" type="hidden"/>
    <div class="card2-body">
 
- 
+   <!--   <input class="input2"  id="edit-tanggal" type="text" style="text-align:center" placeholder="PWO-PUR03-07"/> 
+    --> 
   <select id="edit-tanggal">
     
     <option selected></option>
@@ -1806,11 +1918,59 @@ function cari() {
     </div>
     
   </div>
-</div>
+</div><style>
+.modal5 {
+  display: none;
+  position: fixed;
+  z-index: 999999999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
 
-</div>
+.modal-content5 { z-index: 999999;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  max-width: 90%;
+  text-align: center;
+}
+.modal-content5 button {
+  margin: 0.5rem;
+}</style>
 
-  <script src="libs/swiper.min.js"></script>
+
+
+    
+ <script>
+ function toggleInputGroup() {
+      const telp = document.getElementById("noTelpInput");
+      const desainput = document.getElementById("desaSelectInput");
+      const display = telp.style.display === "none" || telp.style.display === "" ? "block" : "none";
+      telp.style.display = display;
+      desainput.style.display = display;
+    }
+
+   
+document.getElementById("editPasswordModal").addEventListener("click", function (e) {
+  if (e.target === this) {
+    this.style.display = "none";
+    document.getElementById("editModalPasswordInput").value = ""; // reset input PIN
+  }
+});
+</script>
+</div>
+ <script src="libs/swiper.min.js"></script>
     <script src="app.js"></script>
-</body>
+
+
+  
+ </body>
 </html>
+ 
+
+
+  
