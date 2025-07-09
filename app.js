@@ -1,46 +1,56 @@
-
-
-
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/service-worker.js').then(registration => {
-      console.log('ServiceWorker registered:', registration);
+      console.log('[App] Service Worker registered');
 
-      // Cek jika ada update
       registration.onupdatefound = () => {
-        const newSW = registration.installing;
-        if (newSW) {
-          newSW.onstatechange = () => {
-            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-              // Service worker baru sudah siap
-              showUpdateBanner(newSW);
-            }
-          };
-        }
+        console.log('[App] Update found');
+        const newWorker = registration.installing;
+
+        newWorker.onstatechange = () => {
+          console.log('[App] New SW state:', newWorker.state);
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            showUpdateBanner(newWorker);
+          }
+        };
       };
     });
   });
-}
 
-function showUpdateBanner(newSW) {
-  const banner = document.createElement('div');
-  banner.innerHTML = `
-    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 1em; display: flex; justify-content: space-between; align-items: center; z-index: 1000;">
-      Versi baru tersedia.
-      <button id="reloadBtn" style="margin-left: 1em; padding: 0.5em 1em;">Muat Ulang</button>
-    </div>
-  `;
-  document.body.appendChild(banner);
-
-  document.getElementById('reloadBtn').addEventListener('click', () => {
-    newSW.postMessage({ type: 'SKIP_WAITING' });
-  });
-
+  // Jika controller berubah (karena skipWaiting), reload otomatis
   navigator.serviceWorker.addEventListener('controllerchange', () => {
+    console.log('[App] Controller changed - reloading...');
     window.location.reload();
   });
 }
+
+function showUpdateBanner(newWorker) {
+  const banner = document.createElement('div');
+  banner.style.position = 'fixed';
+  banner.style.bottom = '0';
+  banner.style.left = '0';
+  banner.style.right = '0';
+  banner.style.background = '#333';
+  banner.style.color = 'white';
+  banner.style.padding = '1em';
+  banner.style.zIndex = '1000';
+  banner.style.display = 'flex';
+  banner.style.justifyContent = 'space-between';
+  banner.style.alignItems = 'center';
+
+  banner.innerHTML = `
+    <span>Versi baru tersedia.</span>
+    <button id="reload-btn" style="margin-left: 1em; padding: 0.5em 1em;">Muat Ulang</button>
+  `;
+
+  document.body.appendChild(banner);
+
+  document.getElementById('reload-btn').addEventListener('click', () => {
+    console.log('[App] Reload button clicked');
+    newWorker.postMessage({ type: 'SKIP_WAITING' });
+  });
+}
+
 
 
 
