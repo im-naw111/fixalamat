@@ -1534,24 +1534,32 @@ th {
   </div>
  <script>
 function cari() {
-  var input = document.getElementById("pencarian").value;
+  var input = document.getElementById("pencarian").value.trim();
+
+  if (input.length < 4) {
+    // Jika input kurang dari 4 karakter, tampilkan semua baris
+    document.querySelectorAll("table").forEach(function(t) {
+      for (var i = 2; i < t.rows.length; i++) {
+        t.rows[i].style.display = "";
+      }
+    });
+    return;
+  }
+
   var tabel = document.querySelectorAll("table");
-  
+
   tabel.forEach(function(t) {
     var rows = t.rows;
-    
+
     for (var i = 2; i < rows.length; i++) {
-      var rt = rows[i].cells[0].textContent.replace("RT", "");
-      var rw = rows[i].cells[1].textContent.replace("RW", "");
+      var rt = rows[i].cells[0].textContent.replace("RT", "").trim();
+      var rw = rows[i].cells[1].textContent.replace("RW", "").trim();
       var kode = rt + rw;
-      
+
       if (kode.includes(input)) {
         rows[i].style.display = "";
-       /* rows[i].style.background = "green";
-        rows[i].style.color = "white";
-      */} else {
+      } else {
         rows[i].style.display = "none";
-        
       }
     }
   });
