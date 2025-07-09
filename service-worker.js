@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'my-app-cache-v4';
+const CACHE_NAME = 'my-app-cache-v1';
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
@@ -22,23 +22,26 @@ const FILES_TO_CACHE = [
  // '/libs/all.min.js'
 ];
 
+
 self.addEventListener('install', event => {
-  console.log('[ServiceWorker] Install');
-  self.skipWaiting(); // Agar SW langsung aktif
+  console.log('[SW] Installing...');
+  self.skipWaiting(); // Aktifkan segera
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
 });
 
 self.addEventListener('activate', event => {
-  console.log('[ServiceWorker] Activate');
+  console.log('[SW] Activating...');
   event.waitUntil(
-    caches.keys().then(cacheNames =>
+    caches.keys().then(keys =>
       Promise.all(
-        cacheNames.map(name => {
-          if (name !== CACHE_NAME) {
-            console.log('[ServiceWorker] Removing old cache:', name);
-            return caches.delete(name);
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            console.log('[SW] Deleting old cache:', key);
+            return caches.delete(key);
           }
         })
       )
@@ -55,16 +58,10 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Update detection and notification
+// Terima pesan dari halaman utama
 self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('[SW] SKIP_WAITING received');
     self.skipWaiting();
   }
 });
-
-self.addEventListener('install', () => {
-  self.skipWaiting(); // langsung aktifkan service worker yang baru
-});
-
-
-
