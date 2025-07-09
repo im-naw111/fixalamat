@@ -1,13 +1,51 @@
 
+
+
+
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(() => console.log('Service Worker berhasil didaftarkan!'))
-      .catch(err => console.log('Gagal mendaftar SW:', err));
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('ServiceWorker registered:', registration);
+
+      // Cek jika ada update
+      registration.onupdatefound = () => {
+        const newSW = registration.installing;
+        if (newSW) {
+          newSW.onstatechange = () => {
+            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+              // Service worker baru sudah siap
+              showUpdateBanner(newSW);
+            }
+          };
+        }
+      };
+    });
   });
 }
 
-    
+function showUpdateBanner(newSW) {
+  const banner = document.createElement('div');
+  banner.innerHTML = `
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 1em; display: flex; justify-content: space-between; align-items: center; z-index: 1000;">
+      Versi baru tersedia.
+      <button id="reloadBtn" style="margin-left: 1em; padding: 0.5em 1em;">Muat Ulang</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  document.getElementById('reloadBtn').addEventListener('click', () => {
+    newSW.postMessage({ type: 'SKIP_WAITING' });
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
+  });
+}
+
+
+
+
+
    const API_URL = "https://script.google.com/macros/s/AKfycbwpnBuJ2kB0tzlFO3diO7noeXfckpbLNdVFID4-IsVF_DifE34evnbJtyysC_u5JWEw/exec";
   let allData = [];
   
