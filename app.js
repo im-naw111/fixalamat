@@ -153,8 +153,8 @@ function setActiveTab(index) {
 } 
   
 
-  swiper.slideTo(1, 0);
-    setActiveTab(1);
+  swiper.slideTo(2, 0);
+    setActiveTab(2);
 window.setTab = setTab;
     
   function kembali() {document.querySelector('.search-bar').value = "";          document.querySelector('.search-rtrw').value = "";
