@@ -1038,8 +1038,11 @@ function updateData() {
   const tanggal = document.getElementById("edit-tanggal").value;
 
   showLoader();
-fetch(API_URL + "?action=update" + "&sheetname=" + sheet + "&id=" + id + "&nama=" + nama + "&alamat=" + alamat + "&telepon=" + telepon + "&alamataseli=" + alamataseli + "&desa=" + desa + "&tanggal=" + tanggal)
- /* fetch(`${API_URL}?action=update&sheetname=${sheet}&id=${id}&nama=${nama}&alamat=${alamat}&telepon=${telepon}&alamataseli=${alamataseli}&desa=${desa}&tanggal=${tanggal}`)*/
+  fetch(API_URL + "?action=update" + "&sheetname=" + encodeURIComponent(sheet) + "&id=" + encodeURIComponent(id) + "&nama=" + encodeURIComponent(nama) + "&alamat=" + encodeURIComponent(alamat) + "&telepon=" + encodeURIComponent(telepon) + "&alamataseli=" + encodeURIComponent(alamataseli) + "&desa=" + encodeURIComponent(desa) + "&tanggal=" + encodeURIComponent(tanggal))
+
+/*fetch(API_URL + "?action=update" + "&sheetname=" + sheet + "&id=" + id + "&nama=" + nama + "&alamat=" + alamat + "&telepon=" + telepon + "&alamataseli=" + alamataseli + "&desa=" + desa + "&tanggal=" + tanggal)
+*/
+    /* fetch(`${API_URL}?action=update&sheetname=${sheet}&id=${id}&nama=${nama}&alamat=${alamat}&telepon=${telepon}&alamataseli=${alamataseli}&desa=${desa}&tanggal=${tanggal}`)*/
     .then(() => {
       closeModal("modal-edit");
       closeModal("modal-detail");
