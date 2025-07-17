@@ -410,7 +410,10 @@ function saveData() {
  /* fetch(`${API_URL}?action=create&sheetname=${sheet}&nama=${nama}&alamat=${alamat}&telepon=${telepon}&alamataseli=${alamataseli}&desa=${desa}`)*/
   
   
-fetch(API_URL + "?action=create" + "&sheetname=" + sheet + "&nama=" + nama + "&alamat=" + alamat + "&telepon=" + telepon + "&alamataseli=" + alamataseli + "&desa=" + desa)  
+/*fetch(API_URL + "?action=create" + "&sheetname=" + sheet + "&nama=" + nama + "&alamat=" + alamat + "&telepon=" + telepon + "&alamataseli=" + alamataseli + "&desa=" + desa)  
+*/
+  fetch(API_URL + "?action=create" + "&sheetname=" + encodeURIComponent(sheet) + "&nama=" + encodeURIComponent(nama) + "&alamat=" + encodeURIComponent(alamat) +  "&telepon=" + encodeURIComponent(telepon) + "&alamataseli=" + encodeURIComponent(alamataseli) + "&desa=" + encodeURIComponent(desa))
+
   .then(res => res.json())
     .then(response => {
       if (response.status === "success") {
