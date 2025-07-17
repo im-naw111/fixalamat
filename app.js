@@ -821,7 +821,7 @@ function searchData() {
   if (query === "") {
     const tampilkanSemua = allData.map(item => {
       const [id, nama, alamat, telepon, alamataseli, desa, tanggal] = item;
-      return [id, nama, alamat, telepon, alamataseli, desa, tanggal, nama, alamat, desa];
+      return [id, nama, alamat, telepon, alamataseli, desa, tanggal, nama, alamat/*, desa*/];
     });
     renderCards(tampilkanSemua, userLogin);
   /*  resultCount.innerText = `(${allData.length})`;*/
@@ -839,13 +839,13 @@ function searchData() {
     .map(item => {
       const [id, nama, alamat, telepon, alamataseli, desa, tanggal] = item;
      /* const combinedText = `${nama} ${alamat} ${desa}`.toLowerCase();*/
-      const combinedText = (nama + " " + alamat + " " + desa).toLowerCase();
+      const combinedText = (nama + " " + alamat/* + " " + desa*/).toLowerCase();
       const allKeywordsMatch = keywords.every(kw => combinedText.includes(kw));
       if (allKeywordsMatch) {
         const highlightedNama = highlightMatchingWords(nama);
         const highlightedAlamat = highlightMatchingWords(alamat);
-        const highlightedDesa = highlightMatchingWords(desa);
-        return [id, highlightedNama, highlightedAlamat, telepon, alamataseli, highlightedDesa, tanggal, nama, alamat, desa];
+       /* const highlightedDesa = highlightMatchingWords(desa);*/
+        return [id, highlightedNama, highlightedAlamat, telepon, alamataseli, /*highlightedDesa*/desa, tanggal, nama, alamat, desa];
       }
       return null;
     })
