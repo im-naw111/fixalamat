@@ -693,7 +693,77 @@ function renderCards(data, userLogin, idBaru = null, idEdit = null, append = fal
  resultCount.innerText = "(" + data.length + ")"; 
 document.querySelector('.search-bar').disabled = false;
   
-  limitedData.forEach(item => {
+ limitedData.forEach(item => {
+  const [id, namaHTML, alamatHTML, telepon, alamataseliHTML, desaHTML, tanggalHTML, namaRaw, alamatRaw, desaRaw] = item;
+  
+  const isBaru = id === idBaru;
+  const isEdit = id === idEdit;
+  const maskedNumber1 = telepon.slice(-4).padStart(telepon.length, "*");
+   const showDeleteButton = (desaHTML === '-' || desaHTML === '@Lainnya');
+  const showCallButton = telepon !== '0';
+  const DesaLock = (desaHTML !== '-' && desaHTML !== '@Lainnya');
+  const pesanWA = encodeURIComponent(
+    "Halo 【" + namaRaw + "】, kami dari J&T Express ingin memastikan Alamat pengiriman paket COD anda. Mohon bantuannya untuk konfirmasi alamat lengkapnya,\n\nApakah benar alamat lengkapnya di Desa【" + alamataseliHTML + "】?\n\nTerima kasih"
+  );
+
+  const card = document.createElement("div");
+  card.className = "card";
+
+
+
+  // Set data-* attributes
+  card.dataset.id = id;
+  card.dataset.nama = namaRaw;
+  card.dataset.alamat = alamatRaw;
+  card.dataset.telepon = telepon;
+  card.dataset.alamataseli = alamataseliHTML;
+  card.dataset.desa = desaRaw;
+  card.dataset.tanggal = tanggalHTML;
+
+  // Tambahkan event listener atau onclick
+  card.setAttribute("onclick", "showDetailModal(this)");
+
+  card.innerHTML = `
+    <div class="card-header">
+      <div class="circle">1</div>
+      <span class="timestamp">${tanggalHTML}</span>
+    </div>
+    <div class="divider"></div>
+    <div class="info">
+      <span class="label">Penerima:</span>
+      <span class="value" style="font-weight:500;white-space: pre-line;">${namaHTML}</span>
+    </div>
+    <div class="grid-2">
+      <span class="label">No. Hp Penerima:</span>
+      <span class="label">Alamat Terverifikasi:</span>
+      <span class="value">${maskedNumber1}</span>
+      <span class="value">${desaHTML}${DesaLock ? ' <i class="fas fa-lock"></i>' : ''}</span>
+    </div>
+    <div class="info">
+      <span class="label">Alamat Penerima:</span>
+      <!--<span style="white-space: pre-line;font-weight:500;">
+
+       </span>-->
+   <span class="value" style=" font-weight:500;white-space: pre-line; ">  ${alamatHTML}  </span>
+      
+    </div>
+    <div class="divider"></div>
+    <div class="action-buttons">
+      ${showDeleteButton ? `<i onclick="event.stopPropagation(); deleteData('${id}')" class="fas fa-trash-alt text-red"></i>` : ''}
+      ${showCallButton ? `<a href="tel:${telepon}" onclick="event.stopPropagation()"><i class="fas fa-phone text-red"></i></a>` : ''}
+      <a href="https://wa.me/${telepon.replace(/^0/, '62')}?text=${pesanWA}" target="_blank" onclick="event.stopPropagation()">
+        <i class="fab fa-whatsapp-square text-green"></i>
+      </a>
+    </div>
+    ${isBaru ? '<div class="badge">TERSIMPAN</div>' : ''}
+    ${isEdit ? '<div class="badge badge-edit">SUDAH EDIT</div>' : ''}
+  `;
+
+  cardContainer.appendChild(card);
+});
+
+  
+  /*  limitedData.forEach(item => {
     const [id, namaHTML, alamatHTML, telepon, alamataseliHTML, desaHTML, tanggalHTML, namaRaw, alamatRaw, desaRaw] = item;
     const isBaru = id === idBaru;
     const isEdit = id === idEdit;
@@ -701,62 +771,18 @@ document.querySelector('.search-bar').disabled = false;
     const showDeleteButton = (desaHTML === '-' || desaHTML === '@Lainnya' );
     const showCallButton = telepon !== '0';
  const DesaLock = (desaHTML !== '-' && desaHTML !== '@Lainnya' );
-  /*  const pesanWA = encodeURIComponent(
-      `Halo 【${namaRaw}】, kami dari J&T Express ingin memastikan Alamat pengiriman paket COD anda. Mohon bantuannya untuk konfirmasi alamat lengkapnya,\n\nApakah benar alamatnya di Desa【${alamataseliHTML}】?\n\nTerima kasih`
-    );*/
+  
     
 const pesanWA = encodeURIComponent("Halo 【" + namaRaw + "】, kami dari J&T Express ingin memastikan Alamat pengiriman paket COD anda. Mohon bantuannya untuk konfirmasi alamat lengkapnya,\n\nApakah benar alamat lengkapnya di Desa【" + alamataseliHTML + "】?\n\nTerima kasih");
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML ="<div onclick=\"showDetailModal('" + id + "', '" + escapeQuotes(namaRaw) + "', '" + escapeQuotes(alamatRaw) + "', '" + telepon + "', '" + alamataseliHTML + "', '" + escapeQuotes(desaRaw) + "', '" + tanggalHTML + "')\">" + "<div class=\"card-header\">" + "<div class=\"circle\">1</div>" + "<span class=\"timestamp\">" + tanggalHTML + "</span>" + "</div>" + "<div class=\"divider\"></div>" + "<div class=\"info\">" + "<span class=\"label\">Penerima:</span>" + "<span class=\"value\" style=\"font-weight:500;white-space: pre-line;\">" + namaHTML + "</span>" + "</div>" + "<div class=\"grid-2\">" + "<span class=\"label\">No. Hp Penerima:</span>" + "<span class=\"label\">Alamat Terverifikasi:</span>" + "<span class=\"value\">" + maskedNumber1 + "</span>" + "<span class=\"value\">" + desaHTML + (DesaLock ? " <i class=\"fas fa-lock\"></i>" : "") + "</span>" + "</div>" + "<div class=\"info\">" + "<span class=\"label\">Alamat Penerima:</span>" + "<p class=\"value\" style=\"white-space: pre-line;font-weight:500;\"><span style=\"font-weight:400;color:gray\"><!--PURBALINGGA, " + userLogin + ", --></span>" + alamatHTML + "</p>" + "</div>" + "<div class=\"divider\"></div>" + "</div>" + "<div class=\"action-buttons\">" + (showDeleteButton ? "<i onclick=\"deleteData('" + id + "')\" class=\"fas fa-trash-alt text-red\"></i>" : "") + (showCallButton ? "<a href=\"tel:" + telepon + "\" onclick=\"event.stopPropagation()\"><i class=\"fas fa-phone text-red\"></i></a>" : "") + "<a href=\"https://wa.me/" + telepon.replace(/^0/, '62') + "?text=" + pesanWA + "\" target=\"_blank\" onclick=\"event.stopPropagation()\">" + "<i class=\"fab fa-whatsapp-square text-green\"></i>" + "</a>" + "</div>" + (isBaru ? "<div class=\"badge\">TERSIMPAN</div>" : "") + (isEdit ? "<div class=\"badge badge-edit\">SUDAH EDIT</div>" : "");
-  /*    card.innerHTML = `
-      <div onclick="showDetailModal('${id}', '${escapeQuotes(namaRaw)}', '${escapeQuotes(alamatRaw)}', '${telepon}', '${alamataseliHTML}', '${escapeQuotes(desaRaw)}', '${tanggalHTML}')">
-        <div class="card-header">
-          <div class="circle">1</div>
-          <span class="timestamp">${tanggalHTML}</span>
-        </div>
-        <div class="divider"></div>
-        <div class="info">
-          <span class="label">Penerima:</span>
-          <span class="value" style="font-weight:500;white-space: pre-line;">${namaHTML}</span>
-        </div>
-        <div class="grid-2">
-          <span class="label">No. Hp Penerima:</span>
-          <span class="label">Alamat Terverifikasi:</span>
-          <span class="value">${maskedNumber1}</span>
-          <span class="value">${desaHTML}</span>
-        </div>
-        <div class="info">
-          <span class="label">Alamat Penerima:</span>
-          <p class="value" style="white-space: pre-line;font-weight:500;"><span style="font-weight:400;color:gray"><!--PURBALINGGA, ${userLogin}, --></span>${alamatHTML} </p>
-        </div>
-        <div class="divider"></div>
-      </div>
-      <div class="action-buttons">
-        ${showDeleteButton ? `<i onclick="deleteData('${id}')" class="fas fa-trash-alt text-red"></i>` : ''}  
-       
-       
-       
-       
-         ${showCallButton ? `<a href="tel:${telepon}" onclick="event.stopPropagation()">
-          <i class="fas fa-phone text-red"></i>` : ''}
-          
-          
-          
-        </a>             
-        <a href="https://wa.me/${telepon.replace(/^0/, '62')}?text=${pesanWA}" target="_blank" onclick="event.stopPropagation()">
-          <i class="fab fa-whatsapp-square text-green"></i>
-        </a>
-      </div>
-      ${isBaru ? '<div class="badge">TERSIMPAN</div>' : ''}
-      ${isEdit ? '<div class="badge badge-edit">TERUPDATE</div>' : ''}
-    `;
-*/
+  
     card.setAttribute("data-id", id);
     cardContainer.appendChild(card);
   });
 
-   
+*/   
  /* setTimeout(() => {
     cardContainer.classList.remove("fade-in");
   }, 50);
@@ -962,7 +988,55 @@ pendingEditData = {id, nama, alamat, telepon, alamataseli, desa, tanggal };
   pendingEditData = null;
 };
 
-  
+ function showDetailModal(el) {
+  const id = el.dataset.id;
+  const nama = el.dataset.nama;
+  const alamat = el.dataset.alamat;
+  const telepon = el.dataset.telepon;
+  const alamataseli = el.dataset.alamataseli;
+  const desa = el.dataset.desa;
+  const tanggal = el.dataset.tanggal;
+
+  tempDetail = { id, nama, alamat, telepon, alamataseli, desa, tanggal };
+
+  const userLogin = localStorage.getItem("userLogin");
+  const showbadgeButton = desa !== '-';
+  const salahTLC = desa === '⚠️ Kesalahan TLC';
+
+  document.getElementById("detail-nama").innerText = nama;
+  document.getElementById("detail-alamat").innerText = alamat;
+
+  const last4Digits = telepon.slice(-4); 
+  const maskedNumber = last4Digits.padStart(telepon.length, "*");
+
+  document.getElementById("detail-kecamatan").innerText = salahTLC ? desa : userLogin;
+  document.getElementById("detail-telepon").innerText = maskedNumber;
+  document.getElementById("detail-desa").innerText = desa;
+  document.getElementById("detail-tanggal").innerText = tanggal;
+
+  document.getElementById("salahTLC").innerHTML = salahTLC ? desa : 'PURBALINGGA';
+
+  document.getElementById("detail-alamataseli").innerHTML =
+    showbadgeButton
+      ? alamataseli + ' <span><svg width="17px" height="17px" viewBox="0 0 17 17" class="VerifiedIcon"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-767.000000, -573.000000)"><g transform="translate(-80.000000, -57.000000)"><g transform="translate(100.000000, 77.000000)"><g transform="translate(400.000000, 401.000000)"><g transform="translate(347.000000, 152.000000)"><path d="M1.74035847,11.2810213 C1.61434984,11.617947 1.54545455,11.982746 1.54545455, 12.3636364 C1.54545455,14.0706983 2.92930168,15.4545455 4.63636364,15.4545455 C5.01725401,15.4545455 5.38205302,15.3856502 5.71897873,15.2596415 C6.22025271,16.2899361 7.2772042,17 8.5,17 C9.7227958,17 10.7797473,16.2899361 11.2810213,15.2596415 L11.2810213,15.2596415 C11.617947,15.3856502 11.982746,15.4545455 12.3636364,15.4545455 C14.0706983,15.4545455 15.4545455,14.0706983 15.4545455,12.3636364 C15.4545455,11.982746 15.3856502,11.617947 15.2596415,11.2810213 C16.2899361,10.7797473 17,9.7227958 17,8.5 C17,7.2772042 16.2899361,6.22025271 15.2596415,5.71897873 C15.3856502,5.38205302 15.4545455,5.01725401 15.4545455,4.63636364 C15.4545455,2.92930168 14.0706983,1.54545455 12.3636364,1.54545455 C11.982746,1.54545455 11.617947,1.61434984 11.2810213,1.74035847 C10.7797473,0.71006389 9.7227958,0 8.5,0 C7.2772042,0 6.22025272,0.71006389 5.71897873,1.74035847 C5.38205302,1.61434984 5.01725401,1.54545455 4.63636364,1.54545455 C2.92930168,1.54545455 1.54545455,2.92930168 1.54545455,4.63636364 C1.54545455,5.01725401 1.61434984,5.38205302 1.74035847,5.71897873 C0.71006389,6.22025272 0,7.2772042 0,8.5 C0,9.7227958 0.71006389,10.7797473 1.74035847,11.2810213 L1.74035847,11.2810213 Z" class="verified-bg" opacity="1" fill="#44A7F6"></path><path d="M11.2963464,5.28945679 L6.24739023,10.2894568 L7.63289664,10.2685106 L5.68185283,8.44985845 C5.27786241,8.07328153 4.64508754,8.09550457 4.26851062,8.499495 C3.8919337,8.90348543 3.91415674,9.53626029 4.31814717,9.91283721 L6.26919097,11.7314894 C6.66180802,12.0974647 7.27332289,12.0882198 7.65469737,11.7105432 L12.7036536,6.71054321 C13.0960757,6.32192607 13.0991603,5.68876861 12.7105432,5.29634643 C12.3219261,4.90392425 11.6887686,4.90083965 11.2963464,5.28945679 L11.2963464,5.28945679 Z" class="verified-check" fill="#FFFFFF"></path></g></g></g></g></g></g></svg></span>'
+      : alamataseli;
+
+  // Edit button
+  const editBtn = document.getElementById("btn-edit-detail");
+  if (editBtn) {
+    editBtn.onclick = () => {
+      showEditModal(id, nama, alamat, telepon, alamataseli, desa, tanggal);
+    };
+  }
+
+  // Tampilkan modal
+  document.getElementById("modal-detail").style.display = "flex";
+  openModals.push('modal-detail'); 
+  history.pushState({ modalId: 'modal-detail' }, '');
+}
+
+
+/*  
  function showDetailModal(id, nama, alamat, telepon, alamataseli, desa, tanggal) {
   tempDetail = { id, nama, alamat, telepon, alamataseli, desa, tanggal };
 
@@ -1006,7 +1080,7 @@ document.getElementById("detail-alamat").innerText = alamat;
   openModals.push('modal-detail'); 
   history.pushState({ modalId: 'modal-detail' }, '');
 }
-
+*/
   
   
   
