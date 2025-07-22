@@ -56,7 +56,7 @@ function showUpdateBanner(newWorker) {
 
 
 
-   const API_URL = "https://script.google.com/macros/s/AKfycbwpnBuJ2kB0tzlFO3diO7noeXfckpbLNdVFID4-IsVF_DifE34evnbJtyysC_u5JWEw/exec";
+   const API_URL = "https://script.google.com/macros/s/AKfycbxBAb5SRY4JEIPSvJGOuAd8BVq4TlzfjOAZCZ4MNOwvKAb7a1P8CnlM7dAv_S6bWvMM/exec";
   let allData = [];
   
   
