@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'my-app-cache-v14';
+const CACHE_NAME = 'my-app-cache-v15';
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
