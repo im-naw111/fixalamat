@@ -202,7 +202,7 @@ function togglePassword() {
  
   
  const desaPerUser = {
-  "KEJOBONG": ["@Bandingan", "@Gumiwang", "@Kedarpan", "@Kejobong", "@Krenceng", "@Lamuk", "@Langgar", "@Nangkasawit", "@Nangkod", "@Pandansari", "@Pangempon", "@Sokanegara", "@Timbang", "@Tejasari", "⚠️ Kesalahan TLC"],
+  "KEJOBONG": ["@Bandingan", "@Gumiwang", "@Kedarpan", "@Kejobong", "@Krenceng", "@Lamuk", "@Langgar", "@Nangkasawit", "@Nangkod", "@Pandansari", "@Pangempon", "@Sokanegara", "@Timbang", "@Tejasari", "@Cilapar", "⚠️ Kesalahan TLC"],
    
   "PENGADEGAN": ["@Bedagas", "@Karangjoho", "@Larangan", "@Pangadegan", "@Panunggalan", "@Pasunggingan", "@Tegalpingen", "@Tetel", "@Tumanggal", "⚠️ Kesalahan TLC"],
    
