@@ -1663,11 +1663,11 @@ function cari() {
     
     <div class="card2-body" id="desaSelectInput" style="display: none;">
     
- 
+ <!--
  <select id="add-desa" class="input2">
   <option value="" disabled selected>Pilih Desa</option>
 </select>
-
+-->
       
       
       
@@ -1977,10 +1977,10 @@ function cari() {
  <script>
  function toggleInputGroup() {
       const telp = document.getElementById("noTelpInput");
-      const desainput = document.getElementById("desaSelectInput");
+   //   const desainput = document.getElementById("desaSelectInput");
       const display = telp.style.display === "none" || telp.style.display === "" ? "block" : "none";
       telp.style.display = display;
-      desainput.style.display = display;
+    //  desainput.style.display = display;
     }
 
    
