@@ -1139,7 +1139,7 @@ let deleteId = null;
 
   
   
-var audio = new Audio("https://im-naw111.github.io/audioimage/audio/Teet1.mp3");
+var audio = new Audio("Teet1.mp3");
 
 function play() {
          audio.play();
