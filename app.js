@@ -40,7 +40,7 @@ function showUpdateBanner(newWorker) {
 
   banner.innerHTML = `
     <span>Versi baru tersedia.</span>
-    <button id="reload-btn" style="margin-left: 1em; padding: 0.5em 1em;">Muat Ulang</button>
+    <button id="reload-btn" style="margin-left: 1em; padding: 0.5em 1em;">Updating...</button>
   `;
 
   document.body.appendChild(banner);
