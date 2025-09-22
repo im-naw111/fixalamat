@@ -4,6 +4,7 @@ const FILES_TO_CACHE = [
   '/',
   '/Teet1.mp3',
   '/L22.gif',
+  '/Tdkada.jpg',
   '/index.html',
   '/style.css',
   '/app.js',
