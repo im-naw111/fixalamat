@@ -3,6 +3,7 @@ const CACHE_NAME = 'my-app-cache-v23';
 const FILES_TO_CACHE = [
   '/',
   '/Teet1.mp3',
+  '/L22.gif',
   '/index.html',
   '/style.css',
   '/app.js',
