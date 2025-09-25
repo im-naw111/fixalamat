@@ -1308,7 +1308,7 @@ window.addEventListener('popstate', function() {
       tab1.style.transform = "translateY(" + Math.min(diff, 100) + "px)";
    /*   tab1.style.transform = `translateY(${Math.min(diff, 100)}px)`;*/
    //   refresh.innerText = diff > 80 ? "Lepaskan untuk refresh" : "";//Tarik untuk refresh
-     refresh.innerHTML = diff > 80 ? "<p style='padding:12px'><img width='85px' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmcpoJ8DOvaARXgktt0UHnzO4JpiRgF71UbPyuxzIcFcCgkiUQbWDfLdvcoEnQ8ftNPMF2K6nIcUXk3p7qRouAAI7wMQ7ls4cUgUkiq_z6i6xe-mhqMc0LhGBrPfXLIW5n1GqI9OHRPJ6vmix-SzWmLhTnLDexTEa3JhoRmktE0dpT3LstdMsGCPCejZn/s200/PipKSqoTk55M6sKtik.webp' /></p>" : "";
+     refresh.innerHTML = diff > 80 ? "<p style='padding:12px'><img width='85px' src='/L22.gif' /></p>" : "";
     }
   }, { passive: false });
 
