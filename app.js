@@ -594,7 +594,7 @@ function LoadingRefresh() {
         '<div style="margin-top:-120px;display: flex; flex-direction: column; align-items: center; max-width: 100%;background:#f9f9f9;">' +
     
             '<img style="max-width: 380px; width: 100%;left:0; margin-bottom: 8px;padding:0;margin:0" ' + 
-            'src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJviXZzHdH2T7PGZKaXnZrwYMbtaGz3fnwBdLIB9_whvH8ouLL26WC5zVhOZyoRFmITaho8fEJiKCfAAl3K5p6HZpzJ79Iw6JIJXnk5ASD7bc5z3CL_t90irEmvzT_9IS36F_cpvtpv-H3rYC7zNWzRsLbp-zKIOftzg3_ZyQT-4z6BaBqu2EPDWWDkRt_/s720/1000148136.jpg" ' + 
+            'src="/Tdkada.jpg" ' + 
             'alt="Tidak ada data">' +
     
             '<div style="background:#f9f9f9;">Tidak ada data</div>' +
