@@ -593,8 +593,8 @@ function LoadingRefresh() {
     
         '<div style="margin-top:-120px;display: flex; flex-direction: column; align-items: center; max-width: 100%;background:#f9f9f9;">' +
     
-            '<img style="max-width: 380px; width: 100%;left:0; margin-bottom: 8px;padding:0;margin:0" ' + 
-            'src="/Tdkada.jpg" ' + 
+            '<img style="max-width: 380px; width: 30%;left:0; margin-bottom: 8px;padding:0;margin:0" ' + 
+            'src="/Tdkada.png" ' + 
             'alt="Tidak ada data">' +
     
             '<div style="background:#f9f9f9;">Tidak ada data</div>' +
