@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'my-app-cache-v32';
+const CACHE_NAME = 'my-app-cache-v33';
 const FILES_TO_CACHE = [
   '/',
   '/Teet1.mp3',
