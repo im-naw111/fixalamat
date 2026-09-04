@@ -1,12 +1,12 @@
 
-const CACHE_NAME = 'my-app-cache-v35';
+const CACHE_NAME = 'my-app-cache-v36';
 const FILES_TO_CACHE = [
   '/',
-  '/Teet1.mp3',
+ /* '/Teet1.mp3',
   '/pkt.jpg',
   '/L22.gif',
   '/Tdkada.png',
- /* '/index.html',*/
+  '/index.html',
   '/style.css',
   '/app.js',
   '/manifest.json',
@@ -22,7 +22,7 @@ const FILES_TO_CACHE = [
   '/webfonts/fa-solid-900.woff2',
   '/webfonts/fa-v4compatibility.ttf',
   '/webfonts/fa-v4compatibility.woff2'
-  
+*/  
  // '/libs/all.min.js'
 ];
 
